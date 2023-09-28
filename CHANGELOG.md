@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.12.12
+### 28-Sep-2023
+- Added a failure indication when a "Local" validation trigger does not exist in the main script ([Pull Request No. 117](https://github.com/dan-snelson/Setup-Your-Mac/pull/117); thanks for another one, @drtaru!)
+
 ## 1.12.11
 ### 26-Sep-2023
 - Restored logging of `jamfProPolicyNameFailures`

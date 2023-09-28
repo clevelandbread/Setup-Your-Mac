@@ -77,6 +77,9 @@
 #   - Restored logging of `jamfProPolicyNameFailures`
 #   - Updated `if … then` statements when disabling the "Continue" button in the User Input "Welcome" dialog until Dynamic Download Estimates have complete ([Pull Request No. 115](https://github.com/dan-snelson/Setup-Your-Mac/pull/116); thanks, @delize!)
 #
+#   Version 1.12.12, 28-Sep-2023, Dan K. Snelson (@dan-snelson)
+#   - Added a failure indication when a "Local" validation trigger does not exist in the main script ([Pull Request No. 117](https://github.com/dan-snelson/Setup-Your-Mac/pull/117); thanks for another one, @drtaru!)
+#
 ####################################################################################################
 
 
@@ -91,7 +94,7 @@
 # Script Version and Jamf Pro Script Parameters
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-scriptVersion="1.12.11"
+scriptVersion="1.12.12"
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin
 scriptLog="${4:-"/var/log/org.churchofjesuschrist.log"}"                        # Parameter 4: Script Log Location [ /var/log/org.churchofjesuschrist.log ] (i.e., Your organization's default location for client-side logs)
 debugMode="${5:-"verbose"}"                                                     # Parameter 5: Debug Mode [ verbose (default) | true | false ]
@@ -2086,7 +2089,7 @@ function validatePolicyResult() {
                     ;;
                 * )
                     updateScriptLog "SETUP YOUR MAC DIALOG: Locally Validate Policy Result: Local Validation “${validation}” Missing"
-                    dialogUpdateSetupYourMac "listitem: index: $i, status: fail, statustext: Missing Local Validation"
+                    dialogUpdateSetupYourMac "listitem: index: $i, status: fail, statustext: Missing Local “${validation}” Validation"
                     jamfProPolicyTriggerFailure="failed"
                     exitCode="1"
                     jamfProPolicyNameFailures+="• $listitem  \n"
