@@ -1,0 +1,28 @@
+#!/bin/sh
+#####################################################################################
+#
+# HomeBrew Validation
+# for
+# Setup Your Mac via swiftDialog
+# Inspired by M. Lamont
+#Written by Michael Cleveland
+####################################################################################
+
+# Find machine type
+UNAME_MACHINE="$(uname -m)"
+
+if [[ "$UNAME_MACHINE" == "arm64" ]]; then
+    # M1/arm64 machines
+    if [[ -e /opt/homebrew/bin/brew ]]; then
+        echo "Installed"
+    else
+        echo "Failure"
+    fi
+else
+    # Intel machines
+    if [[ -e /usr/local/bin/brew ]]; then
+        echo "Installed"
+    else
+        echo "Failure"
+    fi
+fi
